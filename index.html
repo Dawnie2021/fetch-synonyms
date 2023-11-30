@@ -2,38 +2,85 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Synonyms</title>
-    <script src="./assets/script.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.2/lux/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch Synonyms</title>
+  <script src="./assets/script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.2/lux/bootstrap.min.css">
 </head>
 
 <body>
-    <header>
-        <h1>Fetch Synonyms</h1>
-        <h2>A place to end redundancy</h2>
-    </header>
-    <main>
-        <Section>
-            <main class="container-fluid"> <!-- bg-dark text-light min-vh-100 -->
-                <div class="row">
-                    <div class="col col-md-12 justify-content-center"></div>
-                    <h3>
-                        <p>How many times have you found yourself repeatedly using the same words? Have you ever
-                            wondered what synonyms might do to make your writing more engaging?</p>
-                    </h3>
-                    <form>
-                        <input type="text" placeholder="What word would you like to get more options for?"
-                            class="form-control">
-                        <!--come back to shorten button sjn-->
-                        <br>
-                        <button class="btn btn-primary" id="fetch-button">Get Synonym</button>
-                        <div class="synonym-container"></div>
-                    </form>
-                </div>
-        </Section>
-    </main>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .form-control {
+      border: solid black;
+    }
+
+    h1 {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      ;
+    }
+
+    h4 {
+      display: flex;
+      justify-content: center;
+    }
+
+    p {
+      margin: 10px;
+      font-weight: 400;
+      padding: 20px;
+    }
+
+    form button {
+      margin-top: 20px;
+    }
+  </style>
+
+
+  <header>
+    <h1>Fetch Synonyms</h1>
+    <h4>A place to end redundancy</h4>
+    <p>How many times have you found yourself repeatedly using the same words? Have you ever
+      wondered what synonyms might do to make your writing more engaging?</p>
+
+  </header>
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col col-md-3">
+        <form>
+          <input type="text" placeholder="Search for a word" class="form-control">
+          <button class="btn btn-primary w-100" type="button" id="fetch-button">Get Synonyms</button>
+        </form>
+      </div>
+      <div class="col col-md-6">
+        <ul class="list-group">
+
+          <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+            <h3>Word</h3>
+            <button type="button" class="btn btn-primary btn-sm">Click</button>
+          </li>
+          <li class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
+            <h3>Word </h3>
+            <button type="button" class="btn btn-primary btn-sm">Click</button>
+          </li>
+          <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+            <h3>Word </h3>
+            <button type="button" class="btn btn-primary btn-sm">Click</button>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </main>
 </body>
 
 </html>
