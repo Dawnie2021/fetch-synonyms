@@ -20,4 +20,13 @@ return response.json();
 searchButton.addEventListener ("click", function(event){
     event.preventDefault()
     searchWord();
-})
+});
+
+function showSynonyms() {
+    
+}
+
+function ReadAloud() {
+    var synonyms = synonyms.value
+    fetch (`https://mdn.github.io/dom-examples/web-speech-api/speak-easy-synthesis/` + synonyms)
+    }
