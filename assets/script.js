@@ -10,7 +10,7 @@ apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/<hello>`
 
 function searchWord() {
     var word = wordInput.value
-    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/` + word);
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/` + word)
         .then(function (response) {
         return response.json();
     }
