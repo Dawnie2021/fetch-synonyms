@@ -4,6 +4,12 @@ var synonyms = document.getElementById("synonyms");
 
 apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/<word>`
 
-for (let i = 0; i <data.list.length i +=3) {
-    
+fetch (`https://api.dictionaryapi.dev/api/v2/entries/en/<word>`)
+.then(function(response){
+return response.json();
 }
+)
+.then(function (data){
+    getSynonyms("word");
+}
+)
