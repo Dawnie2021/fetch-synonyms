@@ -23,19 +23,18 @@
     h1 {
       display: flex;
       justify-content: center;
-      padding: 10px;
-      ;
+      padding: 40px;
+      background-color: rgba(33, 30, 30, 0.8);
+      color: lightgray;
     }
 
-    h4 {
-      display: flex;
-      justify-content: center;
-    }
+
 
     p {
       margin: 10px;
       font-weight: 400;
-      padding: 20px;
+      padding: 10px;
+
     }
 
     form button {
@@ -46,9 +45,14 @@
 
   <header>
     <h1>Fetch Synonyms</h1>
-    <h4>A place to end redundancy</h4>
-    <p>How many times have you found yourself repeatedly using the same words? Have you ever
-      wondered what synonyms might do to make your writing more engaging?</p>
+    <figure class="text-center">
+      <blockquote class="blockquote">
+        <p class="mb-0">
+        <p>Please enter a noun in the text box to search for a synonym and click the fetch synonyms button. If a synonym
+          is available, it will be displayed on the right. If you click on the button it will pronounce the word for
+          you. </p>
+      </blockquote>
+    </figure>
 
   </header>
   <main class="container-fluid">
@@ -56,7 +60,7 @@
       <div class="col col-md-3">
         <form>
           <input type="text" placeholder="Search for a word" class="form-control" id="word">
-          <button class="btn btn-primary w-100" type="button" id="fetch-button">Get Synonyms</button>
+          <button class="btn btn-primary w-100" type="button" id="fetch-button">Fetch Synonyms</button>
         </form>
       </div>
       <div class="col col-md-6">
@@ -70,7 +74,7 @@
               <h3 id="result2">Word </h3>
               <button type="button" class="btn btn-primary btn-sm">Click</button>
             </li>
-            <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+            <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center">
               <h3 id="result3">Word </h3>
               <button type="button" class="btn btn-primary btn-sm">Click</button>
             </li>

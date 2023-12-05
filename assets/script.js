@@ -16,9 +16,9 @@ function searchWord() {
     .then(function (data) {
       console.log(data);
       console.log(data[0].synonyms);
-      result1.innerHTML = data[0].meanings[0].synonyms[0];
-      result2.innerHTML = data[0].meanings[0].synonyms[1];
-      result3.innerHTML = data[0].meanings[0].synonyms[2];
+      result1.innerHTML = data[0].meanings[0].synonyms[0] || data[0].meanings[1].synonyms[0] || data[0].meanings[2].synonyms[0] 
+      result2.innerHTML = data[0].meanings[0].synonyms[1] || data[0].meanings[1].synonyms[1] || data[0].meanings[2].synonyms[1] 
+      result3.innerHTML = data[0].meanings[0].synonyms[2] || data[0].meanings[1].synonyms[2] || data[0].meanings[2].synonyms[2] 
     });
 }
 searchButton.addEventListener("click", function (event) {
