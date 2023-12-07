@@ -3,8 +3,9 @@ var searchButton = document.getElementById("fetch-button");
 var synonyms = document.getElementById("synonyms");
 var synth = window.speechSynthesis;
 var wordList = document.querySelector("#results");
-var themes = ['success', 'danger', 'info', 'warning', 'dark'];
+var themes = ["success", "danger", "info", "warning", "dark"];
 
+// API for synonyms, code to pull the noun, adjective and verbs.
 function searchWord() {
   var word = wordInput.value;
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/` + word)
@@ -19,7 +20,10 @@ function searchWord() {
           if (meaning.synonyms.indexOf(synonym) >= 5) break;
           var liEl = document.createElement("li");
           var type = themes[meaning.synonyms.indexOf(synonym)];
-          liEl.className = "list-group-item list-group-item-" + type + " d-flex justify-content-between align-items-center";
+          liEl.className =
+            "list-group-item list-group-item-" +
+            type +
+            " d-flex justify-content-between align-items-center";
           liEl.id = "result-" + synonym;
 
           var h3El = document.createElement("h3");
@@ -33,6 +37,7 @@ function searchWord() {
           wordList.append(liEl);
         }
       }
+      // error response
       if (!wordList.innerHTML || data.title) {
         var h3El = document.createElement("h3");
         h3El.className = "text-center";
@@ -40,44 +45,39 @@ function searchWord() {
         wordList.appendChild(h3El);
       }
     });
-
-
 }
+// Event listener for the search button
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   searchWord();
 });
-
 function displaySynonyms(data) {
   displayResults[2];
   // if (!data) return;
 }
-
-
+// speech
 function resultSpeak(element) {
   if (synth.speaking) {
     console.error("speechSynthesis.speaking");
     return;
   }
-
+  // voice choice Aaron
   var utterThis = new SpeechSynthesisUtterance(element.textContent);
   utterThis.voice = synth.getVoices().find(function (v) {
     return v.name === "Aaron";
   });
-
   utterThis.onend = function () {
     for (var button of wordList.querySelectorAll("button")) {
       button.disabled = false;
     }
   };
-
   utterThis.onerror = function (error) {
     console.error(error);
   };
 
   synth.speak(utterThis);
 }
-
+// text to speach button
 wordList.addEventListener("click", function (e) {
   var element = e.target;
   for (var button of wordList.querySelectorAll("button")) {
