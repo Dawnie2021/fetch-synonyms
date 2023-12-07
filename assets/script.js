@@ -30,6 +30,7 @@ function displaySynonyms(data) {
   displayResults[2];
 }
 
+
 function resultSpeak(element) {
   if (synth.speaking) {
     console.error("speechSynthesis.speaking");
