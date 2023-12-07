@@ -1,11 +1,9 @@
 var wordInput = document.getElementById("word");
 var searchButton = document.getElementById("fetch-button");
 var synonyms = document.getElementById("synonyms");
-var result1 = document.getElementById("result1");
-var result2 = document.getElementById("result2");
-var result3 = document.getElementById("result3");
-const synth = window.speechSynthesis;
-var wordList = document.querySelector(".word-list");
+var synth = window.speechSynthesis;
+var wordList = document.querySelector("#results");
+var themes = ['success', 'danger', 'info', 'warning', 'dark'];
 
 function searchWord() {
   var word = wordInput.value;
@@ -14,12 +12,36 @@ function searchWord() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-      console.log(data[0].synonyms);
-      result1.innerHTML = data[0].meanings[0].synonyms[0] || data[0].meanings[1].synonyms[0] || data[0].meanings[2].synonyms[0] 
-      result2.innerHTML = data[0].meanings[0].synonyms[1] || data[0].meanings[1].synonyms[1] || data[0].meanings[2].synonyms[1] 
-      result3.innerHTML = data[0].meanings[0].synonyms[2] || data[0].meanings[1].synonyms[2] || data[0].meanings[2].synonyms[2] 
+      wordList.innerHTML = null;
+      for (var meaning of data[0]?.meanings || []) {
+        if (!meaning.synonyms.length) continue;
+        for (var synonym of meaning?.synonyms || []) {
+          if (meaning.synonyms.indexOf(synonym) >= 5) break;
+          var liEl = document.createElement("li");
+          var type = themes[meaning.synonyms.indexOf(synonym)];
+          liEl.className = "list-group-item list-group-item-" + type + " d-flex justify-content-between align-items-center";
+          liEl.id = "result-" + synonym;
+
+          var h3El = document.createElement("h3");
+          h3El.textContent = synonym;
+
+          var buttonEl = document.createElement("button");
+          buttonEl.className = "btn btn-primary btn-sm";
+          buttonEl.textContent = "Click";
+
+          liEl.append(h3El, buttonEl);
+          wordList.append(liEl);
+        }
+      }
+      if (!wordList.innerHTML || data.title) {
+        var h3El = document.createElement("h3");
+        h3El.className = "text-center";
+        h3El.textContent = data.title || "Synonym not found";
+        wordList.appendChild(h3El);
+      }
     });
+
+
 }
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
@@ -28,6 +50,7 @@ searchButton.addEventListener("click", function (event) {
 
 function displaySynonyms(data) {
   displayResults[2];
+  // if (!data) return;
 }
 
 
@@ -36,11 +59,12 @@ function resultSpeak(element) {
     console.error("speechSynthesis.speaking");
     return;
   }
-  console.log(element);
-  const utterThis = new SpeechSynthesisUtterance(element.textContent);
+
+  var utterThis = new SpeechSynthesisUtterance(element.textContent);
   utterThis.voice = synth.getVoices().find(function (v) {
     return v.name === "Aaron";
   });
+
   utterThis.onend = function () {
     for (var button of wordList.querySelectorAll("button")) {
       button.disabled = false;
