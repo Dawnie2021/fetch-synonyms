@@ -1,6 +1,6 @@
 # fetch-synonyms
 
-This is a simple digital thesaurus made to help students, journalists, and writers improve their work by finding subsititute words to help round out their vocabulary and reduce redundancy, making their writing more engaging.
+This is a simple digital thesaurus made to help students, journalists, and writers improve their work by finding substitute words to help round out their vocabulary and reduce redundancy, making their writing more engaging.
 
 ## User Story
 AS a writer
@@ -9,7 +9,7 @@ SO THAT my writing is less repetitive and more engaging
 
 ## Acceptance Criteria
 GIVEN a digital thesaurus with a form input 
-WHEN I input a word and click the get synonyms button 
+WHEN I input a word and click the fetch synonyms button 
 THEN I am presented with synonyms for my original word
 WHEN I receive those synonyms
 THEN I should have a way to hear their pronunciation
@@ -22,6 +22,9 @@ https://github.com/Dawnie2021/fetch-synonyms
 
 https://dawnie2021.github.io/fetch-synonyms/
 
+![Alt text](image.png)
+
+![Alt text](image-2.png)
 
 
 Made with ❤ by Dawn Nguyen, Jackson Byrd, and Sarah Neubert
