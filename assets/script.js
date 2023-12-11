@@ -3,10 +3,16 @@ var searchButton = document.getElementById("fetch-button");
 var synonyms = document.getElementById("synonyms");
 var synth = window.speechSynthesis;
 var wordList = document.querySelector("#results");
+var searchList = document.querySelector("#search-list");
 var themes = ['success', 'danger', 'info', 'warning', 'dark'];
+var searchArray = [];
 
-function searchWord() {
-  var word = wordInput.value;
+function searchWord(word) {
+
+  // var word = wordInput.value;
+  searchArray.push(word);
+  localStorage.setItem("Search List", JSON.stringify(searchArray))
+
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/` + word)
     .then(function (response) {
       return response.json();
@@ -33,6 +39,7 @@ function searchWord() {
           wordList.append(liEl);
         }
       }
+      getLocalStorage();
       if (!wordList.innerHTML || data.title) {
         var h3El = document.createElement("h3");
         h3El.className = "text-center";
@@ -45,7 +52,8 @@ function searchWord() {
 }
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
-  searchWord();
+  var word = wordInput.value;
+  searchWord(word);
 });
 
 function displaySynonyms(data) {
@@ -87,3 +95,24 @@ wordList.addEventListener("click", function (e) {
     resultSpeak(element.previousElementSibling);
   }
 });
+
+function getLocalStorage() {
+  var arr = JSON.parse(localStorage.getItem("Search List")) || [];
+  for (let i = 0; i < arr.length; i++) {
+    var searchBtn = document.createElement("button");
+    searchBtn.innerHTML = arr[i];
+    searchBtn.setAttribute("class", "seach-btn");
+    searchList.appendChild(searchBtn);
+  }
+}
+
+function displayWord(event) {
+  event.preventDefault();
+  var element = event.target.innerHTML;
+
+
+  searchWord(element);
+}
+
+searchList.addEventListener("click", displayWord);
+// getLocalStorage();
