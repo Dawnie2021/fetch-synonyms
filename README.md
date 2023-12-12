@@ -24,7 +24,13 @@ https://dawnie2021.github.io/fetch-synonyms/
 
 ![Alt text](image.png)
 
-![Alt text](image-1.png)
+![Alt text](image-2.png)
+
+## External resources used
+Words API: https://www.wordsapi.com/
+Speech Synthesizer: https://mdn.github.io/dom-examples/web-speech-api/speak-easy-synthesis/
+Bootswatch: https://bootswatch.com/
+FavIcon: https://favicon.io/
 
 
 Made with ❤ by Dawn Nguyen, Jackson Byrd, and Sarah Neubert

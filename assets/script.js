@@ -22,7 +22,10 @@ function searchWord(word) {
           if (meaning.synonyms.indexOf(synonym) >= 5) break;
           var liEl = document.createElement("li");
           var type = themes[meaning.synonyms.indexOf(synonym)];
-          liEl.className = "list-group-item list-group-item-" + type + " d-flex justify-content-between align-items-center";
+          liEl.className =
+            "list-group-item list-group-item-" +
+            type +
+            " d-flex justify-content-between align-items-center";
           liEl.id = "result-" + synonym;
 
           var h3El = document.createElement("h3");
@@ -36,8 +39,12 @@ function searchWord(word) {
           wordList.append(liEl);
         }
       }
+
       searchList.innerHTML = ""
       getLocalStorage();
+
+
+
       if (!wordList.innerHTML || data.title) {
         var h3El = document.createElement("h3");
         h3El.className = "text-center";
@@ -45,9 +52,8 @@ function searchWord(word) {
         wordList.appendChild(h3El);
       }
     });
-
-
 }
+// Event listener for the search button
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   var word = wordInput.value;
@@ -57,37 +63,33 @@ searchButton.addEventListener("click", function (event) {
   searchWord(word);
   wordInput.value = ""
 });
-
 function displaySynonyms(data) {
   displayResults[2];
 
 }
-
-
+// speech
 function resultSpeak(element) {
   if (synth.speaking) {
     console.error("speechSynthesis.speaking");
     return;
   }
-
+  // voice choice Aaron
   var utterThis = new SpeechSynthesisUtterance(element.textContent);
   utterThis.voice = synth.getVoices().find(function (v) {
     return v.name === "Aaron";
   });
-
   utterThis.onend = function () {
     for (var button of wordList.querySelectorAll("button")) {
       button.disabled = false;
     }
   };
-
   utterThis.onerror = function (error) {
     console.error(error);
   };
 
   synth.speak(utterThis);
 }
-
+// text to speach button
 wordList.addEventListener("click", function (e) {
   var element = e.target;
   if (element.matches("button")) {
