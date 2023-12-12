@@ -3,6 +3,12 @@ var searchButton = document.getElementById("fetch-button");
 var synonyms = document.getElementById("synonyms");
 var synth = window.speechSynthesis;
 var wordList = document.querySelector("#results");
+var searchList = document.querySelector("#search-list");
+var themes = ['success', 'danger', 'info', 'warning', 'dark'];
+var searchArray = [];
+
+function searchWord(word) {
+
 
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/` + word)
     .then(function (response) {
@@ -34,6 +40,11 @@ var wordList = document.querySelector("#results");
         }
       }
 
+      searchList.innerHTML = ""
+      getLocalStorage();
+
+
+
       if (!wordList.innerHTML || data.title) {
         var h3El = document.createElement("h3");
         h3El.className = "text-center";
@@ -46,11 +57,15 @@ var wordList = document.querySelector("#results");
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   var word = wordInput.value;
+  searchArray.push(word);
+  localStorage.setItem("Search List", JSON.stringify(searchArray));
+
   searchWord(word);
+  wordInput.value = ""
 });
 function displaySynonyms(data) {
   displayResults[2];
-  // if (!data) return;
+
 }
 // speech
 function resultSpeak(element) {
@@ -77,10 +92,10 @@ function resultSpeak(element) {
 // text to speach button
 wordList.addEventListener("click", function (e) {
   var element = e.target;
-  for (var button of wordList.querySelectorAll("button")) {
-    button.disabled = true;
-  }
   if (element.matches("button")) {
+    for (var button of wordList.querySelectorAll("button")) {
+      button.disabled = true;
+    }
     resultSpeak(element.previousElementSibling);
   }
 });
@@ -90,7 +105,7 @@ function getLocalStorage() {
   for (let i = 0; i < arr.length; i++) {
     var searchBtn = document.createElement("button");
     searchBtn.innerHTML = arr[i];
-    searchBtn.setAttribute("class", "seach-btn");
+    searchBtn.setAttribute("class", "search-btn");
     searchList.appendChild(searchBtn);
   }
 }
@@ -98,10 +113,11 @@ function getLocalStorage() {
 function displayWord(event) {
   event.preventDefault();
   var element = event.target.innerHTML;
-
-
+  console.log(element);
   searchWord(element);
 }
 
+function addToLocalStorage() {
+
+}
 searchList.addEventListener("click", displayWord);
-// getLocalStorage();
