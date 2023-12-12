@@ -50,6 +50,16 @@
       margin-left: 90px;
       color: black;
     }
+
+    #search-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .search-btn {
+      width: 100%;
+      margin: 2px;
+    }
   </style>
 <!-- Applied scout rule, clean up and format code. -->
   <header>
@@ -70,6 +80,7 @@
         <form>
           <input type="text" placeholder="Search for a word" class="form-control text-center" id="word">
           <button class="btn btn-primary w-100" type="button" id="fetch-button">Fetch Synonyms</button>
+          <div id="search-list"></div>
         </form>
       </div>
       <div class="col col-md-6">
