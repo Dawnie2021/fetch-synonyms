@@ -33,4 +33,4 @@ Bootswatch: https://bootswatch.com/
 FavIcon: https://favicon.io/
 
 
-Made with ❤ by Dawn Nguyen, Jackson Byrd, and Sarah Neubert
+Made with ❤ by Dawn Nguyen, Jackson Byrd, and Sara Neubert
