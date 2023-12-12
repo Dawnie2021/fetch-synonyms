@@ -9,9 +9,6 @@ var searchArray = [];
 
 function searchWord(word) {
 
-  // var word = wordInput.value;
-  searchArray.push(word);
-  localStorage.setItem("Search List", JSON.stringify(searchArray))
 
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/` + word)
     .then(function (response) {
@@ -39,6 +36,7 @@ function searchWord(word) {
           wordList.append(liEl);
         }
       }
+      searchList.innerHTML = ""
       getLocalStorage();
       if (!wordList.innerHTML || data.title) {
         var h3El = document.createElement("h3");
@@ -53,12 +51,16 @@ function searchWord(word) {
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
   var word = wordInput.value;
+  searchArray.push(word);
+  localStorage.setItem("Search List", JSON.stringify(searchArray));
+
   searchWord(word);
+  wordInput.value = ""
 });
 
 function displaySynonyms(data) {
   displayResults[2];
-  // if (!data) return;
+
 }
 
 
@@ -88,10 +90,10 @@ function resultSpeak(element) {
 
 wordList.addEventListener("click", function (e) {
   var element = e.target;
-  for (var button of wordList.querySelectorAll("button")) {
-    button.disabled = true;
-  }
   if (element.matches("button")) {
+    for (var button of wordList.querySelectorAll("button")) {
+      button.disabled = true;
+    }
     resultSpeak(element.previousElementSibling);
   }
 });
@@ -101,7 +103,7 @@ function getLocalStorage() {
   for (let i = 0; i < arr.length; i++) {
     var searchBtn = document.createElement("button");
     searchBtn.innerHTML = arr[i];
-    searchBtn.setAttribute("class", "seach-btn");
+    searchBtn.setAttribute("class", "search-btn");
     searchList.appendChild(searchBtn);
   }
 }
@@ -109,10 +111,11 @@ function getLocalStorage() {
 function displayWord(event) {
   event.preventDefault();
   var element = event.target.innerHTML;
-
-
+  console.log(element);
   searchWord(element);
 }
 
+function addToLocalStorage() {
+
+}
 searchList.addEventListener("click", displayWord);
-// getLocalStorage();
