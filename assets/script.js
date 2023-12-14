@@ -8,8 +8,6 @@ var themes = ['success', 'danger', 'info', 'warning', 'dark'];
 var searchArray = [];
 
 function searchWord(word) {
-
-
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/` + word)
     .then(function (response) {
       return response.json();
@@ -42,8 +40,6 @@ function searchWord(word) {
 
       searchList.innerHTML = ""
       getLocalStorage();
-
-
 
       if (!wordList.innerHTML || data.title) {
         var h3El = document.createElement("h3");
@@ -89,7 +85,7 @@ function resultSpeak(element) {
 
   synth.speak(utterThis);
 }
-// text to speach button
+// text to speech button
 wordList.addEventListener("click", function (e) {
   var element = e.target;
   if (element.matches("button")) {
@@ -115,9 +111,5 @@ function displayWord(event) {
   var element = event.target.innerHTML;
   console.log(element);
   searchWord(element);
-}
-
-function addToLocalStorage() {
-
 }
 searchList.addEventListener("click", displayWord);
